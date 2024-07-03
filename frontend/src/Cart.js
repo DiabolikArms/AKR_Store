@@ -3,6 +3,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import UserContext from './context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import API_URL from "./constants";
 import {
   StyledProductCard,
   ProductCardContent
@@ -15,7 +16,8 @@ export default function Cart() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/users/details`, {
+    const url = API_URL + "/users/details";
+    fetch(url, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -33,7 +35,8 @@ export default function Cart() {
   }, [user._id]);
 
   const handleOrderClick = () => {
-    fetch(`http://localhost:4000/users/cartToCheckout`, {
+    const url = API_URL + "/users/cartToCheckout";
+    fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

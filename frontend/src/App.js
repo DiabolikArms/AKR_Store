@@ -15,6 +15,7 @@ import { UserProvider } from './context/UserContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductView from './components/ProductView';
+import API_URL from "./constants";
 
 
 const App = () => {
@@ -58,8 +59,9 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const url = API_URL + "/users/details";
     if (token) {
-      fetch(`http://localhost:4000/users/details`, {
+      fetch(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

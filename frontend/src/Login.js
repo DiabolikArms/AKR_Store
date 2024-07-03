@@ -3,6 +3,7 @@ import { Form, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from './context/UserContext';
 import Swal from 'sweetalert2';
+import API_URL from "./constants";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Button } from './styles/Button';
 
@@ -17,8 +18,8 @@ export default function Login() {
 
   function authenticate(e) {
     e.preventDefault();
-    
-    fetch(`http://localhost:4000/users/login`, {
+    const url = API_URL + "/users/login";
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +53,8 @@ export default function Login() {
   }
 
   function retrieveUserDetails(token) {
-    fetch(`http://localhost:4000/users/details`, {
+    const url = API_URL + "/users/details";
+    fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`
       }

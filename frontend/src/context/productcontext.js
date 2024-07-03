@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProductCard from '../components/ProductCard';
+import API_URL from "../constants";
 
 export default function ProductContext(){
 
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		fetch(`http://localhost:4000/products/active-products`)
+		const url = API_URL + "/products/active-products";
+		fetch(url)
 			.then(res => res.json())
 			.then(data => {
 				setProducts(data);

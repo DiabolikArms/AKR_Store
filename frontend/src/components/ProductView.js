@@ -3,6 +3,7 @@ import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../context/UserContext';
+import API_URL from "../constants";
 import { AddToCartButton } from '../styles/ProductCardStyles';
 
 
@@ -15,7 +16,8 @@ export default function ProductView() {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const addToCart = (productId, quantity) => {
-    fetch(`http://localhost:4000/users/addToCart`, {
+    const url = API_URL + "/users/addToCart";
+    fetch(url, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +53,8 @@ export default function ProductView() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/${productId}`)
+    const url = API_URL + "/products/${productId}";
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         setProductData(data);
