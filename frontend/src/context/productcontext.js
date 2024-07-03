@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ProductCard from '../components/ProductCard';
 
 export default function ProductContext(){
